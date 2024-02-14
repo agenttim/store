@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 from products.models import Product, ProductCategory, Basket
 
 
@@ -15,6 +16,17 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data()
         context['title'] = 'Store Hello Page'
         return context
+
+
+# class BasketCreateView(CreateView):
+#     model = Basket
+#
+#     def post(self, request, *args, **kwargs):
+#         product = Product.objects.get(id=self.kwargs.get('product_id'))
+#         baskets = Basket.objects.filter(user=request.user, product=product)
+#
+#         if not baskets.exists():
+
 
 
 class ProductsListView(ListView):
